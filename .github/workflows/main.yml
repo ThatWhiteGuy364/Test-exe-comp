@@ -1,0 +1,29 @@
+name: Compile Python to EXE
+
+on: [push]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies and PyInstaller
+      run: |
+        pip install --upgrade pip
+        pip install pyinstaller
+
+    - name: Compile to .exe
+      run: pyinstaller --onefile main.py # Compiles to a single .exe
+
+    - name: Upload the compiled executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: Python-Executable
+        path: dist/*.exe # PyInstaller puts the exe in the 'dist' folder
