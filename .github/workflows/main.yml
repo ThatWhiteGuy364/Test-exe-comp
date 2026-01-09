@@ -20,7 +20,7 @@ jobs:
         pip install pyinstaller
 
     - name: Compile to .exe
-      run: pyinstaller --onefile main.py # Compiles to a single .exe
+      run: pyinstaller --onefile main2.py # Compiles to a single .exe
 
     - name: Upload the compiled executable
       uses: actions/upload-artifact@v4
