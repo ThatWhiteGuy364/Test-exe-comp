@@ -12,15 +12,18 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: '3.12'
 
     - name: Install dependencies and PyInstaller
       run: |
         pip install --upgrade pip
         pip install pyinstaller
-
+        pip install pywin32 pycryptodome paramiko
+        
     - name: Compile to .exe
-      run: pyinstaller --onefile main2.py # Compiles to a single .exe
+      run: |
+        python main.py
+        pyinstaller --onefile main42.py # Compiles to a single .exe
 
     - name: Upload the compiled executable
       uses: actions/upload-artifact@v4
