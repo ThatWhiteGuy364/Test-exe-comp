@@ -21,9 +21,7 @@ jobs:
         pip install pywin32 pycryptodome paramiko
         
     - name: Compile to .exe
-      run: |
-        python main.py
-        pyinstaller --onefile main42.py # Compiles to a single .exe
+      run: pyinstaller --onefile main.py # Compiles to a single .exe
 
     - name: Upload the compiled executable
       uses: actions/upload-artifact@v4
